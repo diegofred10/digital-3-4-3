@@ -1,26 +1,30 @@
 <script setup>
 import HeaderComponent from '../components/HeaderComponent.vue';
-import frontPageComponent from '../components/frontPageComponent.vue';
+import FrontPageComponent from '../components/FrontPageComponent.vue';
+
 </script>
 
 <template>
-    <header>
     <HeaderComponent />
-</header>
-    <body>
-        <section>
-            <frontPageComponent />
-        </section>
-    </body>
+    <main>
+
+        <FrontPageComponent />
+        <FrontPageComponent />
+        <FrontPageComponent />
+        <FrontPageComponent />
+
+
+
+
+    </main>
 </template>
 
 <style scoped>
-body{
-     margin: 0 auto;
-    width: 75%;
-}
-section{
-    display: flex;
-    flex-direction: column;
+main {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
 </style>

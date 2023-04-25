@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 </script>
 
 <template>
@@ -11,7 +12,7 @@
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .frontComponent{
     width: 30em;
     display: flex;
@@ -24,6 +25,7 @@
 .theme{
     color: #00d7e8;
 }
+
 
 
 </style>
