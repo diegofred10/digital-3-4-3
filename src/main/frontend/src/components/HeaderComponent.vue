@@ -1,5 +1,4 @@
 <script setup>
-// document.getElementById("date").innerHTML = localDate();
 let day = new Date().getDay();
 let days = ["Domingo","Lunes","Martes","Miercoles","Jueves", "Viernes", "Sabado", "Domingo"]
 let date = new Date().toLocaleDateString()
@@ -23,46 +22,52 @@ let date = new Date().toLocaleDateString()
 
 
 <style lang="scss" scoped>
+@use "@/scss/colors" as c;
 .headerContainer{
-    padding: 1em;
+    // width:90%;
+    // padding: 1em;
     display: flex;
     justify-content: space-between;
-}
-.subscribeButtons {
-    height: fit-content;
-    display: flex;
-    justify-content: space-around;
-    align-items: start;
-
-}
-.date{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #00d7e8;
+    margin: 1em 6.8em 0.3em 6.8em;
+    .subscribeButtons {
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        
+    }
+    .date{
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: map-get(c.$colors, "coral-green");
     display: flex;
     align-items: flex-start;
     height: fit-content;
-    margin: 0 1em 0 0;
+    
 }
-.logo {
-    margin: 0 1em 0 0;
-    border-radius: 25px;
-    width: 14em;
-    height: 7em;
+    .logo {
+    margin: 0 0 0 15em;
+    border-radius: 50px;
+    width: 25%;
+    
+    
+    // height: 7em;
 }
 
-.signIn {
+    .signIn {
     background-color: #007982;
     color: white;
     margin-right: 1em;
-    border-radius: 5px;
+    border-radius: 3px;
+    font-weight: bold;
 }
 
-.logIn {
+    .logIn {
     border: solid 1px #007982;
     color: #007982;
-    border-radius: 5px;
+    border-radius: 3px;
+    height: fit-content;
     background-color: white;
+    
 
-
+}
 }
 </style>
