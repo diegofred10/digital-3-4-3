@@ -1,7 +1,6 @@
 package diegofred.digital.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,53 +15,43 @@ import org.springframework.web.bind.annotation.RestController;
 
 import diegofred.digital.models.Post;
 import diegofred.digital.services.PostService;
+import lombok.AllArgsConstructor;
 
+
+
+@AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/posts")
+@RequestMapping("api/posts")
 public class PostController {
+
     private PostService postService;
 
-    @GetMapping("/")
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+
+    @GetMapping
+    public List<Post> getAllPost(){
+    return postService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
-        Optional<Post> post = postService.getPostById(id);
-        return post.map(value -> ResponseEntity.ok().body(value)).orElseGet(() -> ResponseEntity.notFound().build());
+    public Post getPostById(@PathVariable Long id){
+        return postService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping(value = "add", consumes = "application/json")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
-        Post createdPost = postService.savePost(post);
-        return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
-    }
+        Post savedPost = postService.save(post);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
+}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post post) {
-        Optional<Post> existingPost = postService.getPostById(id);
-        if (existingPost.isPresent()) {
-            Post updatedPost = existingPost.get();
-            updatedPost.setTitle(post.getTitle());
-            updatedPost.setDate(post.getDate());
-            updatedPost.setDescription(post.getDescription());
-            updatedPost.setImage(post.getImage());
-            return new ResponseEntity<>(postService.savePost(updatedPost), HttpStatus.OK);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("/update/{id}")
+    public Post updatePost(@PathVariable Long id, @RequestBody Post postDetails) {
+        return postService.updatePost(id, postDetails);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
-        Optional<Post> post = postService.getPostById(id);
-        if (post.isPresent()) {
-            postService.deletePost(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    public ResponseEntity<String> deletePost(@PathVariable Long id) {
+        postService.deleteById(id);
+        return ResponseEntity.ok("Post deleted successfully");
 }
 
+}
