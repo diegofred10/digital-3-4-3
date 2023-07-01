@@ -1,3 +1,14 @@
+<script setup>
+import axios from 'axios';
+import { defineProps, onBeforeMount, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+let date = new Date().toLocaleDateString();
+
+</script>
+
+
+
 <template>
     <div class="cardComponentContainer">
         <img class="cardImage" src="../assets/images/Lucas.jpeg" alt="imagen de noticia">

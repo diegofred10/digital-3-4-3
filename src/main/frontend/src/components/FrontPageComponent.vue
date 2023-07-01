@@ -1,5 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import axios from 'axios';
+import { defineProps, onBeforeMount, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+let date = new Date().toLocaleDateString();
 </script>
 
 <template>

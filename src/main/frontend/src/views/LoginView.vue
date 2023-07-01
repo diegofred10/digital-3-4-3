@@ -1,6 +1,6 @@
 <script setup>
 import HeaderComponent from '../components/HeaderComponent.vue';
-import LoginForm from '../components/forms/LoginForm.vue';
+import LoginForm from '../components/LoginForm.vue';
 </script>
 
 <template>

@@ -3,6 +3,7 @@ package diegofred.digital.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,10 +17,14 @@ import diegofred.digital.repositories.UserRepository;
 
 
 @Service
-
 public class UserService {
     
     private UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
     public List<User>findAll(){

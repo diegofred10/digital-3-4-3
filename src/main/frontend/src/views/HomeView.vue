@@ -44,6 +44,8 @@ import FooterComponent from '../components/FooterComponent.Vue'
 
         
     </main>
+
+    
     
     <FooterComponent/>
 
